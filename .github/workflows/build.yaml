@@ -10,36 +10,40 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      
+      - name: Use OpenSSL
+        run: |
+          echo "OpenSSL version:"
+          "C:\Program Files\Git\usr\bin\openssl.exe" version
+      
       - name: Install MSBuild
         # uses: microsoft/setup-msbuild@v1
         run: |
           # Step 1: Download the Visual Studio Build Tools installer
-          Invoke-WebRequest -Uri "https://aka.ms/vs/16/release/vs_buildtools.exe" -OutFile "C:\vs_buildtools.exe"
+            # Invoke-WebRequest -Uri "https://aka.ms/vs/16/release/vs_buildtools.exe" -OutFile "C:\vs_buildtools.exe"
 
           # Step 2: Install the Visual Studio Build Tools with the specified components
-          Start-Process -Wait -NoNewWindow -FilePath "C:\vs_buildtools.exe" -ArgumentList `
-              "--installPath `"%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools`"", `
-              "--add Microsoft.Component.ClickOnce.MSBuild", `
-              "--add Microsoft.Net.Component.4.8.SDK", `
-              "--add Microsoft.NetCore.Component.Runtime.6.0", `
-              "--add Microsoft.NetCore.Component.Runtime.7.0", `
-              "--add Microsoft.NetCore.Component.Runtime.8.0", `
-              "--add Microsoft.NetCore.Component.SDK", `
-              "--add Microsoft.VisualStudio.Component.NuGet.BuildTools", `
-              "--add Microsoft.VisualStudio.Component.WebDeploy", `
-              "--add Microsoft.VisualStudio.Web.BuildTools.ComponentGroup", `
-              "--add Microsoft.VisualStudio.Workload.MSBuildTools", `
-              "--quiet", "--norestart", "--nocache", "--wait"
+            #   Start-Process -Wait -NoNewWindow -FilePath "C:\vs_buildtools.exe" -ArgumentList `
+            #       "--installPath `"%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools`"", `
+            #       "--add Microsoft.Component.ClickOnce.MSBuild", `
+            #       "--add Microsoft.Net.Component.4.8.SDK", `
+            #       "--add Microsoft.NetCore.Component.Runtime.6.0", `
+            #       "--add Microsoft.NetCore.Component.Runtime.7.0", `
+            #       "--add Microsoft.NetCore.Component.Runtime.8.0", `
+            #       "--add Microsoft.NetCore.Component.SDK", `
+            #       "--add Microsoft.VisualStudio.Component.NuGet.BuildTools", `
+            #       "--add Microsoft.VisualStudio.Component.WebDeploy", `
+            #       "--add Microsoft.VisualStudio.Web.BuildTools.ComponentGroup", `
+            #       "--add Microsoft.VisualStudio.Workload.MSBuildTools", `
+            #       "--quiet", "--norestart", "--nocache", "--wait"
 
           # Step 3: Clean up by removing the installer file
-          Remove-Item "C:\vs_buildtools.exe"
+            #   Remove-Item "C:\vs_buildtools.exe"
 
           $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin"
-          MSBuild.exe '.\dotnetapp-4.6.2.sln' -t:build -restore -p:RestorePackagesConfig=true
-          MSBuild.exe '.\dotnetapp-4.6.2.sln'
+            #   MSBuild.exe '.\dotnetapp-4.6.2.sln' -t:build -restore -p:RestorePackagesConfig=true
+            #   MSBuild.exe '.\dotnetapp-4.6.2.sln'
           git -v
-          where.exe /R C:\ openssl.exe
-
+        
     #   - name: Build with MSBuild
         # run: msbuild YourSolution.sln /p:Configuration=Release
