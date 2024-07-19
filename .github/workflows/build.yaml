@@ -38,5 +38,8 @@ jobs:
           $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin"
           MSBuild.exe '.\dotnetapp-4.6.2.sln' -t:build -restore -p:RestorePackagesConfig=true
           MSBuild.exe '.\dotnetapp-4.6.2.sln'
+          git -v
+          where openssl
+
     #   - name: Build with MSBuild
         # run: msbuild YourSolution.sln /p:Configuration=Release
