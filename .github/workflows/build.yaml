@@ -35,5 +35,8 @@ jobs:
           # Step 3: Clean up by removing the installer file
           Remove-Item "C:\vs_buildtools.exe"
 
+          $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin"
+          MSBuild.exe --help
+
     #   - name: Build with MSBuild
         # run: msbuild YourSolution.sln /p:Configuration=Release
