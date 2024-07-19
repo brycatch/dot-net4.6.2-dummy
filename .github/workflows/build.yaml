@@ -39,7 +39,7 @@ jobs:
           MSBuild.exe '.\dotnetapp-4.6.2.sln' -t:build -restore -p:RestorePackagesConfig=true
           MSBuild.exe '.\dotnetapp-4.6.2.sln'
           git -v
-          where openssl
+          where.exe /R C:\ openssl.exe
 
     #   - name: Build with MSBuild
         # run: msbuild YourSolution.sln /p:Configuration=Release
