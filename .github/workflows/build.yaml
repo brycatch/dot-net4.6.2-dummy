@@ -24,7 +24,7 @@ jobs:
       - name: Install certificate
         run: |
           openssl x509 -outform der -in '.\dummy-cert.pem' -out '.\dummy-cert.dem'
-          keytool -importcert -trustcacerts -file .\dummy-cert.dem -alias test -keystore "%JAVA_HOME%\lib\security\cacerts" -storepass changeit -keypass changeit -noprompt
+          keytool -importcert -trustcacerts -file .\dummy-cert.dem -alias test -keystore "${{ env.JAVA_HOME }}\lib\security\cacerts" -storepass changeit -keypass changeit -noprompt
 
       - name: Install MSBuild
         # uses: microsoft/setup-msbuild@v1
