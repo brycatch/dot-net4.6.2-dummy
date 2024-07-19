@@ -14,8 +14,8 @@ jobs:
       - name: Use OpenSSL
         run: |
           echo "OpenSSL version:"
-          where.exe /R C:\ openssl.exe
-        #   "C:\Program Files\Git\usr\bin\openssl.exe" -v
+          choco install openssl
+          openssl.exe -v
       
       - name: Install MSBuild
         # uses: microsoft/setup-msbuild@v1
