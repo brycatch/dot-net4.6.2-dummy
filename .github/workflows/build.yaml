@@ -36,7 +36,7 @@ jobs:
           Remove-Item "C:\vs_buildtools.exe"
 
           $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin"
-          MSBuild.exe --help
-
+          MSBuild.exe '.\dotnetapp-4.6.2.sln' -t:build -restore -p:RestorePackagesConfig=true
+          MSBuild.exe '.\dotnetapp-4.6.2.sln'
     #   - name: Build with MSBuild
         # run: msbuild YourSolution.sln /p:Configuration=Release
