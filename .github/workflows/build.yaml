@@ -17,14 +17,15 @@ jobs:
           distribution: "adopt"
           java-version: "17"
 
-      - name: Use OpenSSL
-        run: |
-          choco install openssl
+      # - name: Use OpenSSL
+      #   run: |
+          # choco install openssl
 
       - name: Install certificate
         run: |
-          openssl x509 -outform der -in '.\dummy-cert.pem' -out '.\dummy-cert.dem'
-          keytool -importcert -trustcacerts -file .\dummy-cert.dem -alias test -keystore "${{ env.JAVA_HOME }}\lib\security\cacerts" -storepass changeit -keypass changeit -noprompt
+          dir C:\Windows\assembly\GAC_MSIL
+          # openssl x509 -outform der -in '.\dummy-cert.pem' -out '.\dummy-cert.dem'
+          # keytool -importcert -trustcacerts -file .\dummy-cert.dem -alias test -keystore "${{ env.JAVA_HOME }}\lib\security\cacerts" -storepass changeit -keypass changeit -noprompt
 
       - name: Install MSBuild
         # uses: microsoft/setup-msbuild@v1
@@ -53,7 +54,7 @@ jobs:
           $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin"
             #   MSBuild.exe '.\dotnetapp-4.6.2.sln' -t:build -restore -p:RestorePackagesConfig=true
             #   MSBuild.exe '.\dotnetapp-4.6.2.sln'
-          git -v
+          # git -v
 
     #   - name: Build with MSBuild
     # run: msbuild YourSolution.sln /p:Configuration=Release
