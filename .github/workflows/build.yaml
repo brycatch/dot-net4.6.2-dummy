@@ -24,6 +24,9 @@ jobs:
       - name: Install certificate
         run: |
           dir C:\Windows\assembly\GAC_MSIL
+          get-childitem $env:windir\assembly -Recurse Microsoft.Office.Interop.Excel.dll
+          get-childitem $env:windir\assembly -Recurse Microsoft.Office.Interop.Word.dll
+
           # openssl x509 -outform der -in '.\dummy-cert.pem' -out '.\dummy-cert.dem'
           # keytool -importcert -trustcacerts -file .\dummy-cert.dem -alias test -keystore "${{ env.JAVA_HOME }}\lib\security\cacerts" -storepass changeit -keypass changeit -noprompt
 
